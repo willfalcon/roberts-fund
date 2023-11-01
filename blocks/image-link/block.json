@@ -1,0 +1,16 @@
+{
+  "name": "cdhq/image-link",
+  "title": "Image Link",
+  "style": "image-link-style",
+  "editorStyle": "image-link-editor-style",
+  "category": "cdhq",
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "image-link.php"
+  },
+  "supports": {
+    "align": true
+  },
+  "align": "full",
+  "icon": "grid-view"
+}

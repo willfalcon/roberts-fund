@@ -1,0 +1,22 @@
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+// p, h1, h2, h3, h4, h5, h6 {
+//   margin: 0 0 .5rem;
+// }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+strong {
+  font-weight: bold;
+}

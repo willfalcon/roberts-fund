@@ -1,0 +1,55 @@
+body {
+  @include font;
+  &:not(.wp-admin) {
+    font-size: 1.8rem;
+  }
+  // line-height: 1.125;
+  // color: $black;
+}
+ul {
+  padding-left: 2rem;
+  
+}
+li {
+  margin: 1rem 0;
+  margin-left: 1.5rem;
+}
+
+a {
+  // color: $orange;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  font-size: 3.2rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  
+  @include responsive { 
+    font-size: 5.6rem;
+  }
+} 
+
+h2 {
+  margin: 1.5rem 0;
+  font-size: 2.4rem;
+  @include responsive {
+    font-size: 3rem;
+  }
+}
+
+h3,
+.editor-styles-wrapper .wp-block h3 {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: var(--dark-green);
+  @include responsive {
+    font-size: 2.8rem;
+  }
+}
+
+p {
+  line-height: 1.5;
+}

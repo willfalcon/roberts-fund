@@ -1,0 +1,14 @@
+@mixin custom-variables {
+  
+    --wp--preset--spacing--20: 1rem;
+    --wp--preset--spacing--30: 2rem;
+    --wp--preset--spacing--40: 3rem;
+    --wp--preset--spacing--50: 4rem;
+    --wp--preset--spacing--60: 5rem;
+    --wp--preset--spacing--70: 6rem;
+    --wp--preset--spacing--80: 7rem;
+}
+
+body {
+  @include custom-variables();
+}
