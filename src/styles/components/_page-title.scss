@@ -1,0 +1,14 @@
+.page-title {
+  @include content-width;
+  text-align: center;
+  color: var(--green);
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    text-align: center;
+    padding: 0 6rem;
+    border-bottom: 1px solid var(--teal);
+  }
+  
+}

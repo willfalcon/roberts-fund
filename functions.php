@@ -7,7 +7,8 @@
  function cdhq_theme_assets() {
   $ver = wp_get_theme()->get('Version');
   $env = wp_get_environment_type();
-
+  
+  wp_enqueue_script( 'fontawesome', 'https://kit.fontawesome.com/ce59932e45.js', array(), null );
     if ($env == 'development' || $env == 'local') {
       wp_enqueue_style( 'normalize', get_template_directory_uri() . '/dist/normalize.css' );
       wp_enqueue_style( 'build_styles', get_template_directory_uri() . '/dist/styles.css', array(), $ver );
@@ -163,11 +164,12 @@ add_filter('acf/load_field/name=background_overlay', 'acf_load_color_field_choic
         }
       </style>
     ';
-  }
+}
 
- }
- add_action('wp_head', 'cdhq_set_color_vars');
+}
 
+add_action('wp_head', 'cdhq_set_color_vars');
+add_action('in_admin_header', 'cdhq_set_color_vars');
 
 /**
  * Set login screen logo
@@ -209,7 +211,7 @@ add_filter( 'login_headerurl', 'cdhq_login_logo_url' );
  */
 
 	function custom_excerpt_length( $length ) {
-		return 30;
+		return 60;
 	}
 	add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 

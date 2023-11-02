@@ -1,0 +1,7 @@
+.wp-block {
+  box-sizing: border-box;
+
+  *, *::after, *::before {
+    box-sizing: inherit;
+  }
+} 

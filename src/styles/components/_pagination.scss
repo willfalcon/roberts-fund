@@ -1,0 +1,34 @@
+.pagination {
+  flex: 0 0 100%;
+  max-width: 100%;
+  text-align: center;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  .page-numbers {
+    @include font($fw-bold);
+    color: var(--green);
+    font-size: 1.8rem;
+    border: 1px solid var(--green);
+    // padding: .6rem 1.5rem;
+    // margin: 1rem 1rem;
+    transition: .25s;
+    text-decoration: none;
+    flex: 0 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.current {
+      background-color: rgba(var(--rgb-green), .1);
+    }
+  }
+  a.page-numbers {
+    &:hover {
+      background-color: var(--green);
+      color: white;
+      text-decoration: none;
+    }
+  }
+}

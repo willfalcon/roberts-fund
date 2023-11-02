@@ -1,5 +1,17 @@
 <?php
 
+	/**
+	 * Enqueue block editor assets
+	 */
+	function cdhq_block_editor_assets() {
+		$ver = wp_get_theme()->get('Version');
+		$env = wp_get_environment_type();
+		$is_dev = $env == 'development' || $env == 'local';
+		$base = get_template_directory_uri();
+		wp_enqueue_style( 'editor_styles', $is_dev ? $base . '/dist/editor-styles.css' : $base . '/dist/editor-styles.min.css', array(), $ver );
+		// wp_enqueue_style( 'fonts_editor', 'https://use.typekit.net/zlj5jck.css', array(), null );
+	}
+	add_action( 'enqueue_block_editor_assets', 'cdhq_block_editor_assets' );
 
 /**
  * Register all custom blocks for theme
@@ -12,10 +24,11 @@ function cdhq_register_blocks() {
 
 	$is_dev = $env == 'development' || $env == 'local';
 	$base = get_template_directory_uri() . '/dist/';
-
+	
 	// Image Link
 	register_block_type( __DIR__ . '/image-link' );
 	wp_register_style('image-link-style', $is_dev ? $base . 'image-link/image-link.css' : $base . 'image-link/image-link.min.css', array(), $ver);
+	wp_register_style('image-link-editor-style', $is_dev ? $base . 'image-link/image-link-editor.css' : $base . 'image-link/image-link-editor.min.css', array(), $ver);
 }
 
 add_action('init', 'cdhq_register_blocks', 5);

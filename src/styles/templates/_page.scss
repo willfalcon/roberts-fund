@@ -1,0 +1,16 @@
+.page-content {
+  position: relative;
+  .watermark-image {
+    position: absolute;
+    left: 0;
+    top: 75%;
+    transform: translateY(-50%);
+    opacity: .1;
+    z-index: 0;
+    width: 60%;
+  }
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}

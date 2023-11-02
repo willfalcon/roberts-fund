@@ -1,0 +1,27 @@
+.blog {
+  .post {
+    display: block;
+    @include content-width;
+    color: var(--dark-blue);
+    text-decoration: none;
+    margin-bottom: 5rem;
+    &__title {
+      color: var(--blue);
+    }
+    &__read-more {
+      text-transform: uppercase;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      color: var(--blue);
+      gap: 2rem;
+      &::before, 
+      &::after {
+        content: '';
+        flex: 1 auto;
+        height: 1px;
+        background: var(--teal);
+      }
+    }
+  }
+}

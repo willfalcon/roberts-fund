@@ -1,0 +1,13 @@
+@import '../block-import';
+
+.wp-block {
+  .image-link {
+    &__title {
+      padding: 30px 20px;
+    }
+    
+    &__image {
+      height: 100%;
+    }
+  }
+}

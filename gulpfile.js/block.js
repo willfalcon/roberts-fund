@@ -11,7 +11,7 @@ const argv = require('yargs').argv;
 
 const postCSSPlugins = [autoprefixer(), cssnano()];
 
-const blockStyleScript = (srcFile, destFile, dev) =>
+const styleScript = (srcFile, destFile, dev) =>
   dev
     ? src(srcFile)
         .pipe(sourcemaps.init())
@@ -37,7 +37,7 @@ async function buildBlockStyles() {
       console.log('no default styles');
       return;
     } else {
-      return blockStyleScript(styleSource, styleDest, dev);
+      return styleScript(styleSource, styleDest, dev);
     }
   });
   await fs.access(editorStyleSource, err => {
@@ -45,7 +45,7 @@ async function buildBlockStyles() {
       console.log('no editor styles');
       return;
     } else {
-      return blockStyleScript(editorStyleSource, styleDest, dev);
+      return styleScript(editorStyleSource, styleDest, dev);
     }
   });
 }
@@ -56,11 +56,14 @@ exports.developBlock = function developBlock() {
     return src('index.php');
   }
 
-  console.log(argv.block);
+  const block = argv.block;
+  console.log(block);
 
-  const styleSource = `blocks/${argv.block}/${argv.block}.scss`;
-  const styleWatch = `blocks/${argv.block}/**/*.scss`;
-  const styleDest = `./dist/${argv.block}`;
+  const styleSource = `blocks/${block}/${block}.scss`;
+  const styleWatch = [`blocks/${block}/**/*.scss`, `!blocks/${block}/**/*-editor.scss`];
+  const editorStyleWatch = `blocks/${block}/**/*-editor.scss`;
+  const editorStyleSource = `blocks/${block}/${block}-editor.scss`;
+  const styleDest = `./dist/${block}`;
 
   livereload.listen();
 
@@ -68,7 +71,10 @@ exports.developBlock = function developBlock() {
     return src('index.php').pipe(livereload());
   }
 
-  watch([styleWatch], () => blockStyleScript(styleSource, styleDest, true));
+  watch(styleWatch, () => styleScript(styleSource, styleDest, true));
+  watch(editorStyleWatch, () => styleScript(editorStyleSource, styleDest, true));
+  watch('src/styles/editor-styles.scss', () => styleScript('src/styles/editor-styles.scss', 'dist/', true));
+
   watch(['**/*.php'], refresh);
 };
 

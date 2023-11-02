@@ -1,0 +1,7 @@
+.wp-block {
+  box-sizing: border-box;
+}
+.wp-block *, .wp-block *::after, .wp-block *::before {
+  box-sizing: inherit;
+}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImVkaXRvci1zdHlsZXMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFOztBQUVBO0VBQ0UiLCJmaWxlIjoiZWRpdG9yLXN0eWxlcy5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIud3AtYmxvY2sge1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xuXG4gICosICo6OmFmdGVyLCAqOjpiZWZvcmUge1xuICAgIGJveC1zaXppbmc6IGluaGVyaXQ7XG4gIH1cbn0gIl19 */
