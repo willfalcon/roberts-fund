@@ -3,7 +3,7 @@ const livereload = require('gulp-livereload');
 const fs = require('fs');
 const argv = require('yargs').argv;
 
-const { styleScript } = require('./index');
+const { styleScript } = require('./styles');
 
 async function buildBlockStyles() {
   const dev = !!argv.D;
@@ -60,4 +60,6 @@ exports.developBlock = function developBlock() {
 const buildBlock = series(buildBlockStyles);
 
 exports.buildBlockStyles = buildBlockStyles;
-exports.buildBlock = buildBlock;
+exports.buildBlock = buildBlockStyles;
+
+function buildBlocks() {}

@@ -28,5 +28,6 @@ function prodCopyNormalize() {
 exports.build = parallel(series(prodCopyNormalize, devThemeStyles, prodThemeStyles), series(devMainScript, prodMainScript));
 exports.watch = watchTask;
 exports.developBlock = developBlock;
+exports.buildBlock = buildBlock;
 exports.devThemeStyles = devThemeStyles;
 exports.prodThemeStyles = prodThemeStyles;
