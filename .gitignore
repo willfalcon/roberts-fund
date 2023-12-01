@@ -1,1 +1,7 @@
 node_modules
+
+dist/**/*.css
+!dist/**/*.min.css
+
+dist/**/*.js
+!dist/**/*.min.js

@@ -9,6 +9,7 @@
 		$is_dev = $env == 'development' || $env == 'local';
 		$base = get_template_directory_uri();
 		wp_enqueue_style( 'editor_styles', $is_dev ? $base . '/dist/editor-styles.css' : $base . '/dist/editor-styles.min.css', array(), $ver );
+		wp_enqueue_script('cdhq-editor-customizations', $is_dev ? $base . '/dist/editor.js' : $base . '/dist/editor.min.js', array( 'wp-blocks', 'wp-dom-ready', 'wp-plugins', 'wp-edit-post', 'wp-hooks' ), $ver, true);
 		// wp_enqueue_style( 'fonts_editor', 'https://use.typekit.net/zlj5jck.css', array(), null );
 	}
 	add_action( 'enqueue_block_editor_assets', 'cdhq_block_editor_assets' );

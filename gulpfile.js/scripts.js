@@ -6,7 +6,7 @@ const livereload = require('gulp-livereload');
 
 const scriptSrces = [
   'src/scripts/index.js',
-  // 'src/scripts/editor.js',
+  'src/scripts/editor.js',
   // 'src/scripts/contact-block/contact-block-editor.js',
   // 'src/scripts/contact-block/contact-block-options-page.js',
 ];

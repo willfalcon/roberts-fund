@@ -1,31 +1,9 @@
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 const { src, dest, series, watch } = require('gulp');
 const livereload = require('gulp-livereload');
-const rename = require('gulp-rename');
-const sass = require('gulp-sass')(require('sass'));
-const sourcemaps = require('gulp-sourcemaps');
-const postcss = require('postcss');
 const fs = require('fs');
 const argv = require('yargs').argv;
 
-const postCSSPlugins = [autoprefixer(), cssnano()];
-
-const styleScript = (srcFile, destFile, dev) =>
-  dev
-    ? src(srcFile)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write())
-        .pipe(dest(destFile))
-        .pipe(livereload())
-    : src(srcFile)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(postcss(postCSSPlugins))
-        .pipe(rename({ extname: '.min.css' }))
-        .pipe(sourcemaps.write())
-        .pipe(dest(destFile));
+const { styleScript } = require('./index');
 
 async function buildBlockStyles() {
   const dev = !!argv.D;
