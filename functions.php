@@ -8,12 +8,19 @@
   $ver = wp_get_theme()->get('Version');
   $env = wp_get_environment_type();
   
-  wp_enqueue_script( 'fontawesome', 'https://kit.fontawesome.com/ce59932e45.js', array(), null );
+  wp_enqueue_style( 'cdhq-fonts', 'https://use.typekit.net/pno8ict.css', array(), null );
+
     if ($env == 'development' || $env == 'local') {
+      wp_enqueue_script( 'fontawesome-brands', get_template_directory_uri() . '/inc/fontawesome/brands.js', array(), $ver, true );
+      wp_enqueue_script( 'fontawesome-solid', get_template_directory_uri() . '/inc/fontawesome/solid.js', array(), $ver, true );
+      wp_enqueue_script( 'fontawesome-fontawesome', get_template_directory_uri() . '/inc/fontawesome/fontawesome.js', array(), $ver, true );
       wp_enqueue_style( 'normalize', get_template_directory_uri() . '/dist/normalize.css' );
       wp_enqueue_style( 'build_styles', get_template_directory_uri() . '/dist/styles.css', array(), $ver );
       wp_enqueue_script( 'build_js', get_template_directory_uri() . '/dist/index.js', array(), $ver, true );
     } else {
+      wp_enqueue_script( 'fontawesome-brands', get_template_directory_uri() . '/inc/fontawesome/brands.min.js', array(), $ver, true );
+      wp_enqueue_script( 'fontawesome-solid', get_template_directory_uri() . '/inc/fontawesome/solid.min.js', array(), $ver, true );
+      wp_enqueue_script( 'fontawesome-fontawesome', get_template_directory_uri() . '/inc/fontawesome/fontawesome.min.js', array(), $ver, true );
       wp_enqueue_style( 'normalize', get_template_directory_uri() . '/dist/normalize.min.css' );
       wp_enqueue_style( 'build_styles', get_template_directory_uri() . '/dist/styles.min.css', array(), $ver );
       wp_enqueue_script( 'build_js', get_template_directory_uri() . '/dist/main.min.js', array('promise_polyfill', 'classlist_polyfill'), $ver, true );
@@ -27,12 +34,13 @@
  * 
  * Add pseudo elements attr for fontawesome
  */
-function add_async_attribute($tag, $handle) {
-    if ( 'fontawesome' !== $handle )
-        return $tag;
-    return str_replace( ' src', 'data-search-pseudo-elements defer src', $tag );
-}
-add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+// function add_async_attribute($tag, $handle) {
+//     change this to something that checks if $handle starts with 'fontawesome-'
+//     if ( 'fontawesome' !== $handle )
+//         return $tag;
+//     return str_replace( ' src', 'data-search-pseudo-elements defer src', $tag );
+// }
+// add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
 
 /**
  * Load theme textdomain for translations

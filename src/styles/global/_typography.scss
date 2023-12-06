@@ -17,7 +17,7 @@ li {
 
 a {
   
-  &:hover {
+  &:hover { 
     text-decoration: underline;
   }
 }
@@ -26,7 +26,7 @@ h1 {
   font-size: 3.2rem;
   margin-top: 0;
   margin-bottom: 1.5rem;
-  
+  @include font-serif;
   @include responsive { 
     font-size: 5.6rem;
   }
@@ -36,6 +36,7 @@ h2 {
   margin: 1.5rem 0;
   font-size: 2.4rem;
   color: var(--blue);
+  @include font-serif;
   @include responsive {
     font-size: 3rem;
   }
@@ -53,4 +54,9 @@ h3,
 
 p {
   line-height: 1.5;
+}
+
+
+.has-serif-font-family {
+  font-weight: 500; 
 }

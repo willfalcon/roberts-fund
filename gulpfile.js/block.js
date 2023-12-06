@@ -1,9 +1,11 @@
 const { src, dest, series, watch } = require('gulp');
 const livereload = require('gulp-livereload');
 const fs = require('fs');
+const { readdir } = require('fs/promises');
 const argv = require('yargs').argv;
 
 const { styleScript } = require('./styles');
+const { jsScript } = require('./scripts');
 
 async function buildBlockStyles() {
   const dev = !!argv.D;
@@ -62,4 +64,53 @@ const buildBlock = series(buildBlockStyles);
 exports.buildBlockStyles = buildBlockStyles;
 exports.buildBlock = buildBlockStyles;
 
-function buildBlocks() {}
+async function buildBlocks() {
+  const blocks = await readdir('blocks/');
+  const exclude = ['blocks.php', '_block-import.scss', '.DS_Store'];
+  const blockNames = blocks.filter(block => !exclude.includes(block));
+
+  await Promise.all(
+    blockNames.map(async block => {
+      const styleSource = `blocks/${block}/${block}.scss`;
+      const editorStyleSource = `blocks/${block}/${block}-editor.scss`;
+      const styleDest = `./dist/${block}`;
+      const scriptSource = `blocks/${block}/${block}.js`;
+      const editorScriptSource = `blocks/${block}/${block}-editor.js`;
+
+      await fs.access(styleSource, err => {
+        if (err) {
+          console.log('no default styles');
+          return;
+        } else {
+          return styleScript(styleSource, styleDest);
+        }
+      });
+      await fs.access(editorStyleSource, err => {
+        if (err) {
+          console.log('no editor styles');
+          return;
+        } else {
+          return styleScript(editorStyleSource, styleDest);
+        }
+      });
+      await fs.access(scriptSource, err => {
+        if (err) {
+          console.log('no default script');
+          return;
+        } else {
+          return jsScript(scriptSource);
+        }
+      });
+      await fs.access(editorScriptSource, err => {
+        if (err) {
+          console.log('no editor script');
+          return;
+        } else {
+          return jsScript(editorScriptSource);
+        }
+      });
+    })
+  );
+}
+
+exports.buildBlocks = buildBlocks;

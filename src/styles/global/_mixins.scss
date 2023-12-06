@@ -17,7 +17,13 @@
 }
 
 @mixin font($weight: $fw-regular, $style: normal) {
-	font-family: "effra", sans-serif;
+	font-family: jaf-bernina-sans-condensed, sans-serif;
+	font-weight: $weight;
+  font-style: $style;
+}
+
+@mixin font-serif($weight: 700, $style: normal) {
+	font-family: mixta-pro, serif;
 	font-weight: $weight;
   font-style: $style;
 }

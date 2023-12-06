@@ -65,3 +65,59 @@ exports.prodMainScript = function prodMainScript() {
     )
     .pipe(dest('dist/'));
 };
+
+const jsScript = (sources, dev = false) => {
+  const srcArray = sources.constructor === Array ? sources : [sources];
+  return dev
+    ? src(srcArray)
+        .pipe(named())
+        .pipe(
+          webpack(
+            {
+              devtool: 'eval-cheap-module-source-map',
+              mode: 'development',
+              output: {
+                filename: '[name].js',
+              },
+              module: {
+                rules: [
+                  {
+                    test: /\.js$/,
+                    use: 'babel-loader',
+                    exclude: /node_modules/,
+                  },
+                ],
+              },
+            },
+            compiler
+          )
+        )
+        .pipe(dest('dist/'))
+        .pipe(livereload())
+    : src(srcArray)
+        .pipe(named())
+        .pipe(
+          webpack(
+            {
+              devtool: 'source-map',
+              mode: 'production',
+              output: {
+                filename: '[name].min.js',
+              },
+              module: {
+                rules: [
+                  {
+                    test: /\.js$/,
+                    use: 'babel-loader',
+                    exclude: /node_modules/,
+                  },
+                ],
+              },
+            },
+            compiler
+          )
+        )
+        .pipe(dest('dist/'));
+};
+
+exports.jsScript = jsScript;

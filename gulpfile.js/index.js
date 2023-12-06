@@ -4,7 +4,7 @@ const livereload = require('gulp-livereload');
 const { devThemeStyles, prodThemeStyles, copyNormalize } = require('./styles');
 const { devMainScript, prodMainScript } = require('./scripts');
 
-const { buildBlock, developBlock } = require('./block');
+const { buildBlock, developBlock, buildBlocks } = require('./block');
 
 function refresh(cb) {
   return src('index.php').pipe(livereload());
@@ -31,3 +31,4 @@ exports.developBlock = developBlock;
 exports.buildBlock = buildBlock;
 exports.devThemeStyles = devThemeStyles;
 exports.prodThemeStyles = prodThemeStyles;
+exports.buildBlocks = buildBlocks;

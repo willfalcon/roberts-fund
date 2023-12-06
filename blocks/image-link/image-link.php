@@ -1,4 +1,7 @@
-<div class="image-link">
+<?php
+  $anchor = array_key_exists('anchor', $block) ? $block['anchor'] : false;
+?>
+<div class="image-link"<?php echo $anchor ? ' id="' . $anchor . '"' : ''; ?>>
   <?php 
     $image = get_field('image'); 
     $link = get_field('link');

@@ -9,8 +9,8 @@
       'format' => '?paged=%#%',
       'current' => max( 1, get_query_var('paged') ),
       'total' => $wp_query->max_num_pages,
-      'prev_text'          => __('<i class="fa fa-angle-left fa-lg"></i>', 'mdhs'),
-			'next_text'          => __('<i class="fa fa-angle-right fa-lg"></i>', 'mdhs'),
+      'prev_text'          => __('<i class="fa fa-angle-left fa-lg"></i>', 'cdhq'),
+			'next_text'          => __('<i class="fa fa-angle-right fa-lg"></i>', 'cdhq'),
 		);
     echo paginate_links( $args );
 	?>

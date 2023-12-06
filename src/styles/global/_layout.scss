@@ -33,6 +33,7 @@ body {
   }
   @include responsive {
     padding: 2rem;
+    margin-bottom: 4rem !important; 
     &::before {
       content: '';
       background-image: var(--background-image);
@@ -69,4 +70,8 @@ body {
   box-shadow: $shadow;
   position: relative;
   z-index: 1;
+  @include responsive {
+    top: 2rem;
+
+  }
 }

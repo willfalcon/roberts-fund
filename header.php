@@ -26,7 +26,7 @@
           <img class="header-logo__logo" src="<?php echo get_template_directory_uri() . '/dist/roberts-fund-color.png'; ?>" alt="<?php bloginfo('name'); ?>" />  
         </a>
 
-        <!-- <button class="nav-toggle" id="nav-toggle" aria-label="<?php _e('Open menu', 'mdhs'); ?>">
+        <!-- <button class="nav-toggle" id="nav-toggle" aria-label="<?php _e('Open menu', 'cdhq'); ?>">
           <span></span>
           <span></span>
           <span></span>

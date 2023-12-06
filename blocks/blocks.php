@@ -1,5 +1,57 @@
 <?php
 
+/**
+ * Register all custom blocks for theme
+ * Hooked into 'init'
+ */
+	function cdhq_register_blocks() {
+		$blocks = get_blocks();
+
+		$ver = wp_get_theme()->get('Version');
+		$env = wp_get_environment_type();
+		$base = get_template_directory() . '/blocks/';
+		$is_dev = $env == 'development' || $env == 'local';
+		
+		foreach ($blocks as $block) {
+			$block_base = $base . $block;
+			$dist_base = get_template_directory_uri() . '/dist/' . $block . '/' . $block;
+			if (file_exists($block_base . '/block.json')) {
+				register_block_type($block_base);
+				if (file_exists($block_base . '/' . $block . '.scss')) {
+					wp_register_style($block . '-style', $is_dev ? $dist_base . '.css' : $dist_base . '.min.css', array(), $ver);
+				}
+				if (file_exists($block_base . '/' . $block . '-editor.scss')) {
+					wp_register_style($block . '-editor-style', $is_dev ? $dist_base . '-editor.css' : $dist_base . '-editor.min.css', array(), $ver);
+				}
+				if (file_exists($block_base . '/' . $block . '.js')) {
+					wp_register_script($block . '-script', $is_dev ? $dist_base . '.js' : $dist_base . '.min.js', array(), $ver, true);
+				}
+				if (file_exists($block_base . '/' . $block . '-editor.js')) {
+					wp_register_script($block . '-editor-script', $is_dev ? $dist_base . '-editor.js' : $dist_base . '-editor.min.js', array(), $ver, true);
+				}
+				
+			}
+		}
+	}
+
+	add_action('init', 'cdhq_register_blocks', 5);
+
+	
+	
+	function get_blocks() {
+		$theme = wp_get_theme();
+		$blocks = get_option('cdhq_blocks');
+		$version = get_option('cdhq_blocks_version');
+		if (empty($blocks) || version_compare($theme->get('Version'), $version) || (function_exists( 'wp_get_environment_type' ) && 'production' !== wp_get_environment_type())) {
+			$blocks = scandir(get_template_directory() . '/blocks/' );
+			$blocks = array_values(array_diff($blocks, array('..', '.', '.DS_Store', '_base-block', 'blocks.php', '_block-import.scss')));
+			
+			update_option('cdhq_blocks', $blocks);
+			update_option('cdhq_blocks_version', $theme->get('Version'));
+		}
+		return $blocks;
+	}
+
 	/**
 	 * Enqueue block editor assets
 	 */
@@ -14,25 +66,22 @@
 	}
 	add_action( 'enqueue_block_editor_assets', 'cdhq_block_editor_assets' );
 
-/**
- * Register all custom blocks for theme
- * Hooked into 'init'
- */
-function cdhq_register_blocks() {
-	$ver = wp_get_theme()->get('Version');
-  $env = wp_get_environment_type();
+// function cdhq_register_blocks() {
+// 	$ver = wp_get_theme()->get('Version');
+//   $env = wp_get_environment_type();
   
 
-	$is_dev = $env == 'development' || $env == 'local';
-	$base = get_template_directory_uri() . '/dist/';
+// 	$is_dev = $env == 'development' || $env == 'local';
+// 	$base = get_template_directory_uri() . '/dist/';
 	
-	// Image Link
-	register_block_type( __DIR__ . '/image-link' );
-	wp_register_style('image-link-style', $is_dev ? $base . 'image-link/image-link.css' : $base . 'image-link/image-link.min.css', array(), $ver);
-	wp_register_style('image-link-editor-style', $is_dev ? $base . 'image-link/image-link-editor.css' : $base . 'image-link/image-link-editor.min.css', array(), $ver);
-}
+// 	// Image Link
+// 	register_block_type( __DIR__ . '/image-link' );
+// 	wp_register_style('image-link-style', $is_dev ? $base . 'image-link/image-link.css' : $base . 'image-link/image-link.min.css', array(), $ver);
+// 	wp_register_style('image-link-editor-style', $is_dev ? $base . 'image-link/image-link-editor.css' : $base . 'image-link/image-link-editor.min.css', array(), $ver);
+// }
 
-add_action('init', 'cdhq_register_blocks', 5);
+// add_action('init', 'cdhq_register_blocks', 5);
+
 add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
 /**
@@ -43,7 +92,7 @@ function cdhq_add_block_category( $categories, $post ) {
 		array(
 			array(
 				'slug' => 'cdhq',
-				'title' => __('MDHS Blocks', 'mdhs'),
+				'title' => __('MDHS Blocks', 'cdhq'),
 			)
 		),
 		$categories

@@ -8,7 +8,7 @@
   <!-- <time class="post__date"><?php the_date( 'F j, Y' ); ?></time> -->
   <h3 class="post__title"><?php the_title(); ?></h3>
   <div class="post__excerpt"><?php the_excerpt(); ?></div>
-  <span class="post__read-more"><?php _e('Read More', 'mdhs'); ?></span>
+  <span class="post__read-more"><?php _e('Read More', 'cdhq'); ?></span>
   <!-- <?php if ($imgSrc) : ?>
     <div class="post__image-wrapper">
       <img class="post__image" src="<?php echo $imgSrc[0]; ?>"<?php if ($srcSet) : ?> srcSet="<?php echo $srcSet; ?>"<?php endif; ?> alt="<?php the_title(); ?>" />

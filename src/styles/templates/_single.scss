@@ -1,0 +1,6 @@
+.article-back-link {
+  text-decoration: none;
+  color: inherit;
+  @include content-width;
+  display: block;
+}

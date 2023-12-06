@@ -46,8 +46,8 @@ function cdhq_add_image_sizes() {
 
 function cdhq_custom_sizes( $sizes ) {
   return array_merge( $sizes, array(
-      // 'hero' => __('Hero', 'mdhs'),
-      // 'placeholder' => __('Placeholder', 'mdhs'),
+      // 'hero' => __('Hero', 'cdhq'),
+      // 'placeholder' => __('Placeholder', 'cdhq'),
   ) );
 }
 // add_filter( 'image_size_names_choose', 'cdhq_custom_sizes' );

@@ -4,13 +4,15 @@
   "style": "image-link-style",
   "editorStyle": "image-link-editor-style",
   "category": "cdhq",
+  "apiVersion": 2,
+  "keywords": [],
   "acf": {
     "mode": "auto",
     "renderTemplate": "image-link.php"
   },
   "supports": {
-    "align": true
+    "align": true,
+    "anchor": true
   },
-  "align": "full",
   "icon": "grid-view"
 }

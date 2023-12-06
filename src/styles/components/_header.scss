@@ -13,19 +13,12 @@
   }
 }
 
-.nav-toggle {
-  display: none; 
-  @include responsive {
-  }
-
-}
-
 .header-nav {
   
   margin: 1rem 0;
   @include responsive {
     position: absolute;
-    height: 100%;
+    // height: 100%;
     top: 40px;
     left: 0;
   }
@@ -47,6 +40,8 @@
 
   .menu-item {
     flex-grow: 1;
+    font-weight: $fw-bold;
+    text-transform: uppercase;
     @include responsive {
       &:nth-child(1) {
         grid-column: 1 / 2;
