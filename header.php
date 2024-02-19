@@ -23,7 +23,7 @@
       <header class="header" id="site-header">
 
         <a class="header-logo" href="<?php bloginfo('url'); ?>">
-          <img class="header-logo__logo" src="<?php echo get_template_directory_uri() . '/dist/roberts-fund-color.png'; ?>" alt="<?php bloginfo('name'); ?>" />  
+          <img class="header-logo__logo" src="<?php echo get_template_directory_uri() . '/dist/rmf-tree.png'; ?>" alt="<?php bloginfo('name'); ?>" />  
         </a>
 
         <!-- <button class="nav-toggle" id="nav-toggle" aria-label="<?php _e('Open menu', 'cdhq'); ?>">
