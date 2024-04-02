@@ -7,7 +7,7 @@
 <a class="post<?php if (!$imgSrc) { echo ' no-image'; } ?>" href="<?php the_permalink(); ?>">
   <!-- <time class="post__date"><?php the_date( 'F j, Y' ); ?></time> -->
   <h3 class="post__title"><?php the_title(); ?></h3>
-  <div class="post__excerpt"><?php the_excerpt(); ?></div>
+  <div class="post__excerpt"><?php the_content(); ?></div> 
   <span class="post__read-more"><?php _e('Read More', 'cdhq'); ?></span>
   <!-- <?php if ($imgSrc) : ?>
     <div class="post__image-wrapper">
